@@ -31,4 +31,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
+  <!-- Auto-increment build version on every compile -->
+  <Target Name="IncrementBuildVersion" BeforeTargets="CoreCompile">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\build-version.ps1&quot; &quot;$(MSBuildProjectDirectory)&quot;" />
+  </Target>
 </Project>
