@@ -126,7 +126,7 @@ namespace Lumberjack
         {
             _log = log;
 
-            _panel = new DraggablePanel("core.logconsole", "Log Console", 800, 300);
+            _panel = new DraggablePanel("core.logconsole", "Lumberjack - The Log Console", 800, 300);
             _panel.ShowCloseButton = true;
             _panel.CloseOnEscape = true;
             _panel.ClipContent = true;
