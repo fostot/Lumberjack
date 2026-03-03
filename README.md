@@ -2,6 +2,40 @@
 
 An in-game log console for Terraria, built for the [TerrariaModder](https://github.com/fostot) platform. Intercepts all mod log output and displays it in a resizable, scrollable, filterable overlay — like a Quake-style developer console tailored for Terraria mod debugging.
 
+> **Platform:** TerrariaModder (Harmony-based mod injection)
+> **Framework:** .NET Framework 4.8
+> **Author:** Fostot
+
+> **Bundled Lux Version:** 1.0.0 — [Lux Repository](https://github.com/fostot/Lux)
+> **Bundled Monofont Version:** 1.0.0 — [Monofont Repository](https://github.com/fostot/Monofont)
+
+---
+
+> [!CAUTION]
+> **Required: Lux UI Library**
+>
+> Lumberjack depends on **[Lux](https://github.com/fostot/Lux)** — a shared UI widget library that provides the draggable panel system, layout engine, and input handling used by the log console. **Lumberjack will not work without it.**
+>
+> **Installation:**
+> 1. Download `Lux.dll` from the [Lux releases](https://github.com/fostot/Lux/releases) (also bundled in Lumberjack's release zip)
+> 2. Place it in your `Terraria/TerrariaModder/core/` folder (next to `TerrariaModder.Core.dll`)
+
+---
+
+> [!IMPORTANT]
+> **Optional: Monofont for Proper UI Text**
+>
+> Lumberjack supports **[Monofont](https://github.com/fostot/Monofont)** — a crisp 8x16 monospace bitmap font that replaces Terraria's blurry variable-width font in the log console. Without it, Lumberjack falls back to Terraria's default font, which **will cause significant visual issues**: misaligned columns, broken text wrapping, inconsistent row heights, and generally ugly output. The log console was designed around a fixed-width font — Terraria's built-in variable-width font simply cannot produce correct column layouts.
+>
+> **Lumberjack will function without Monofont, but the UI will be nearly unusable.** You are strongly encouraged to install it.
+>
+> **To enable Monofont:**
+> 1. Download `Monofont.dll` from the [Monofont releases](https://github.com/fostot/Monofont/releases) (also bundled in Lumberjack's release zip)
+> 2. Place it in your `Terraria/TerrariaModder/core/` folder (next to `TerrariaModder.Core.dll`)
+> 3. Restart Terraria — Monofont activates automatically
+
+---
+
 ## Features
 
 - **Toggle with tilde (~)** — press the tilde key to open/close the console at any time during gameplay
@@ -21,29 +55,7 @@ An in-game log console for Terraria, built for the [TerrariaModder](https://gith
 - **Thread-safe log buffer** — up to 1,000 entries with oldest-first eviction
 - **Resizable & draggable panel** — move and resize the console window freely; close with the X button or Escape key
 
-## Requirements
-
-- [TerrariaModder](https://github.com/fostot) platform installed
-- [Lux](https://github.com/fostot/Lux) — UI widget framework (provides `DraggablePanel`)
-- [Monofont](https://github.com/fostot/Monofont) — fixed-width bitmap font renderer
-- [HarmonyLib](https://github.com/pardeike/Harmony) — runtime method patching (included with TerrariaModder)
-
-## Installation
-
-1. Download the latest release from the [Releases](https://github.com/fostot/Lumberjack/releases) page
-2. The release zip contains:
-   - `Lumberjack.dll` — the mod itself
-   - `Monofont.dll` — the required font renderer (see version note below)
-3. Place `Lumberjack.dll` in your TerrariaModder mods directory
-4. Place `Monofont.dll` in the Monofont mod directory (if you don't already have it installed)
-5. Ensure [Lux](https://github.com/fostot/Lux) is also installed
-6. Launch Terraria — press **~** (tilde) to open the console
-
-## Bundled Monofont Version
-
-Each Lumberjack release bundles a copy of Monofont for convenience. The version included is noted in the release description.
-
-**Check for updates:** Monofont is actively developed. Before using the bundled version, check the [Monofont releases page](https://github.com/fostot/Monofont/releases) to make sure you have the latest version. If a newer Monofont release is available, download it directly from there instead of using the bundled copy.
+---
 
 ## Usage
 
@@ -64,26 +76,41 @@ Each Lumberjack release bundles a copy of Monofont for convenience. The version 
 | Resize the console | Drag the edges/corners of the panel |
 | Close the console | Click **X** or press **Escape** |
 
+---
+
+## Installation
+
+1. Install [TerrariaModder](https://github.com/fostot) into your Terraria directory.
+2. **Required:** Place [`Lux.dll`](https://github.com/fostot/Lux) in `Terraria/TerrariaModder/core/`.
+3. Copy `Lumberjack.dll` and `manifest.json` into:
+   ```
+   Terraria/TerrariaModder/mods/lumberjack/
+   ```
+4. *(Optional but strongly recommended)* Place [`Monofont.dll`](https://github.com/fostot/Monofont) in `Terraria/TerrariaModder/core/` for proper UI text rendering.
+5. Launch Terraria via `TerrariaInjector.exe`.
+6. Press **~** (tilde) in-game to open the log console.
+
+> **Tip:** The [release zip](https://github.com/fostot/Lumberjack/releases) bundles everything (Lumberjack, Lux, Monofont) with the correct folder structure — just extract into your Terraria directory.
+
+---
+
 ## Building from Source
 
-Requires .NET Framework 4.8 SDK.
-
-```
+```bash
 dotnet build -c Release
 ```
 
-The output `Lumberjack.dll` will be in the `bin/` directory.
+Output: `bin/Lumberjack.dll`
 
-### Build Dependencies
-
-The project references these assemblies (not included in this repo):
-
-- `TerrariaModder.Core.dll` — from your TerrariaModder installation
-- `Lux.dll` — from the [Lux](https://github.com/fostot/Lux) mod
-- `Monofont.dll` — from the [Monofont](https://github.com/fostot/Monofont) mod
-- `0Harmony.dll` — from TerrariaModder's core dependencies
+**Requirements:**
+- .NET Framework 4.8 SDK
+- `TerrariaModder.Core.dll` and `0Harmony.dll` (provided by TerrariaModder in `core/`)
+- `Lux.dll` (shared UI widget library)
+- `Monofont.dll` *(optional — build succeeds without it, text falls back to Terraria's font)*
 
 Update the `<HintPath>` entries in `Lumberjack.csproj` if your install paths differ from the defaults.
+
+---
 
 ## License
 
