@@ -25,9 +25,9 @@ An in-game log console for Terraria, built for the [TerrariaModder](https://gith
 > [!IMPORTANT]
 > **Optional: Monofont for Proper UI Text**
 >
-> Lumberjack supports **[Monofont](https://github.com/fostot/Monofont)** — a crisp 8x16 monospace bitmap font that replaces Terraria's blurry variable-width font in the log console. Without it, Lumberjack falls back to Terraria's default font, which **will cause significant visual issues**: misaligned columns, broken text wrapping, inconsistent row heights, and generally ugly output. The log console was designed around a fixed-width font — Terraria's built-in variable-width font simply cannot produce correct column layouts.
+> Lumberjack supports **[Monofont](https://github.com/fostot/Monofont)** — a crisp 8x16 monospace bitmap font that replaces Terraria's blurry variable-width font in the log console. Without it, Lumberjack falls back to Terraria's default font, which can cause misaligned columns, text wrapping quirks, and inconsistent row heights. The log console was designed around a fixed-width font — Terraria's built-in variable-width font doesn't handle column layouts as cleanly.
 >
-> **Lumberjack will function without Monofont, but the UI will be nearly unusable.** You are strongly encouraged to install it.
+> **Lumberjack works without Monofont installed** — all text will render using Terraria's built-in font as a fallback, but expect some ugly spots and minor layout issues here and there.
 >
 > **To enable Monofont:**
 > 1. Download `Monofont.dll` from the [Monofont releases](https://github.com/fostot/Monofont/releases) (also bundled in Lumberjack's release zip)
