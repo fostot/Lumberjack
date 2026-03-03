@@ -1,0 +1,8 @@
+{
+  "id": "lumberjack",
+  "name": "Lumberjack",
+  "version": "1.0.0",
+  "author": "zero",
+  "description": "In-game log console with resizable columns, text wrapping, and MonoFont rendering.",
+  "entry": "Lumberjack.dll"
+}
